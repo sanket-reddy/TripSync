@@ -1,11 +1,21 @@
 import Navbar from "@/components/custom/navbar";
-import Image from "next/image";
+import { auth, currentUser } from "@clerk/nextjs";
 
-export default function Home() {
+export default async function Home() {
+  const { userId } = auth();
+  if (!userId) {
+    return (
+      <>
+        <Navbar></Navbar>
+        <h1>Pls Login </h1>
+      </>
+    );
+  }
+  const user = await currentUser();
+  console.log(user);
   return (
     <div>
       <Navbar></Navbar>
-      <h1>WELCOME</h1>
     </div>
   );
 }
