@@ -70,7 +70,7 @@ export async function POST(req: Request) {
         publicMetadata: { userId: newUser.id },
       });
     }
-    return NextResponse.json({ message: "OK", user: newUser });
+    return NextResponse.json({ message: "OK", user: newUser }, { status: 200 });
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
